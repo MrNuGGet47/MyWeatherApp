@@ -1,5 +1,7 @@
 package com.example.myweatherbase.activities;
 
+import static com.example.myweatherbase.activities.MainActivity.root;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,22 +19,22 @@ import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
 import com.example.myweatherbase.activities.model.List;
 import com.example.myweatherbase.activities.model.Root;
+import com.example.myweatherbase.base.ImageDownloader;
+import com.example.myweatherbase.base.Parameters;
 
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerVW.ViewHolder> {
 
     private LayoutInflater layoutInflater;
 
-    private ArrayList<List> periodos;
-
-    private View.OnClickListener;
+    private View.OnClickListener onClickListener;
 
     public  AdaptadorRecyclerVW(Context context){
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        this.periodos = Connector.getConector().get(Root.class,"&lat=39.5862518&lon=-0.5411163").list;
 
     }
 
@@ -48,7 +50,7 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
 
     }
 
-    public void setOnClickListener(View.onClickListener onClickListener){
+    public void setOnClickListener(View.OnClickListener onClickListener){
 
         this.onClickListener = onClickListener;
 
@@ -57,36 +59,52 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
     @Override
     public void onBindViewHolder(@NonNull AdaptadorRecyclerVW.ViewHolder holder , int position){
 
-        List periodo = periodos.get(position);
+        List periodo = root.list.get(position);
 
-        holder.icono.setText(periodo.weather.get(0).icon);
+        Date date = new Date((long)root.list.get(position).dt*1000);
 
-        holder.dia.setText(periodo.dt_txt.split(" ")[0]);
+        SimpleDateFormat dateDayOfWeek = new SimpleDateFormat("EEEE");
+
+        SimpleDateFormat dateDay = new SimpleDateFormat("dd / MM / yyyy");
+
+        SimpleDateFormat hour = new SimpleDateFormat("HH:mm");
+
+        ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + root.list.get(position).weather.get(0).icon + Parameters.ICON_URL_POST, holder.icon);
+
+        holder.dia.setText(dateDayOfWeek.format(date));
 
         holder.precipitacion.setText(periodo.weather.get(0).description);
 
-        holder.fecha.setText(periodo.dt);
+        holder.fecha.setText(dateDay.format(date));
 
-        holder.fecha.setText(periodo.dt_txt.split(" ")[1]);
+        holder.hora.setText(hour.format(date));
 
+        holder.temperatura.setText("Temp " + String.valueOf(periodo.main.temp) + "º");
 
+        holder.maxima.setText("Max " + String.valueOf(periodo.main.temp_max) + "º");
+
+        holder.minima.setText("Min " + String.valueOf(periodo.main.temp_min) + "º");
 
     }
 
     @Override
     public int getItemCount(){
 
-        return periodos.size();
+        return root.list.size();
 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView dia, fecha, hora, precipitacion, temperatura, maxima , minima, icono;
+
+        private ImageView icon;
+
+        private TextView dia, fecha, hora, precipitacion, temperatura, maxima , minima;
+
         public ViewHolder(@NonNull View itemView){
 
             super(itemView);
 
-            icono = itemView.findViewById(R.id.icon);
+            icon = itemView.findViewById(R.id.icon);
 
             dia = itemView.findViewById(R.id.dia);
 

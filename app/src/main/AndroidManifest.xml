@@ -14,14 +14,18 @@
         android:theme="@style/Theme.MyWeatherBase"
         tools:targetApi="31"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activities.MainActivity"
+        <activity android:name=".activities.MainActivity"
+            android:label="MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+            </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".activities.infoTiempo"
+            android:label="Informacion del Tiempo">
+
         </activity>
     </application>
 

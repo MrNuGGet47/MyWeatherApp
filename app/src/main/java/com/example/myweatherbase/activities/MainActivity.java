@@ -1,13 +1,17 @@
 package com.example.myweatherbase.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.model.List;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
@@ -17,7 +21,7 @@ import com.example.myweatherbase.base.Parameters;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends BaseActivity implements CallInterface {
+public class MainActivity extends BaseActivity implements CallInterface , View.OnClickListener{
 
     private TextView txtView ;
 
@@ -27,26 +31,30 @@ public class MainActivity extends BaseActivity implements CallInterface {
 
     private ImageView imageView;
 
-    private Root root;
+    static Root root;
 
     private RecyclerView recyclerVW;
+
+    AdaptadorRecyclerVW adaptador;
+
+    private TextView nombreCiudad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.simple_element);
-
-        txtView = findViewById(R.id.txtView);
-
-        textViewDay = findViewById(R.id.textViewDay);
-
-        textViewDayOfWeek = findViewById(R.id.textViewDayOfWeek);
-
-        imageView = findViewById(R.id.imageView);
+        setContentView(R.layout.activity_main);
 
         recyclerVW = findViewById(R.id.recyclerVW);
+
+        adaptador = new AdaptadorRecyclerVW(this);
+
+        adaptador.setOnClickListener(this);
+
+        recyclerVW.setAdapter(adaptador);
+
+        recyclerVW.setLayoutManager(new LinearLayoutManager(this));
 
         // Mostramos la barra de progreso y ejecutamos la llamada a la API
         showProgress();
@@ -68,19 +76,18 @@ public class MainActivity extends BaseActivity implements CallInterface {
 
         hideProgress();
 
-        txtView.setText(root.list.get(0).weather.get(0).description);
+    }
 
-        ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + root.list.get(0).weather.get(0).icon + Parameters.ICON_URL_POST, imageView);
+    @Override
+    public void onClick(View view) {
 
-        Date date = new Date((long)root.list.get(0).dt*1000);
+        List info = root.list.get(recyclerVW.getChildAdapterPosition(view));
 
-        SimpleDateFormat dateDayOfWeek = new SimpleDateFormat("E");
+        Intent intent = new Intent(this, infoTiempo.class);
 
-        SimpleDateFormat dateDay = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
+        intent.putExtra("INFO",info);
 
-        textViewDayOfWeek.setText(dateDayOfWeek.format(date));
-
-        textViewDay.setText(dateDay.format(date));
+        startActivity(intent);
 
     }
 }

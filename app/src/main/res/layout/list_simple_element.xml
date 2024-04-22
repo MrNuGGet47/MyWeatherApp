@@ -12,11 +12,11 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="731dp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/icon"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="31dp"
         android:layout_marginBottom="31dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,6 +30,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="-8dp"
         android:text="TextView"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="@+id/icon" />
 
@@ -57,7 +59,7 @@
         android:id="@+id/fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="36dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/dia"
         app:layout_constraintTop_toTopOf="@+id/dia" />
@@ -66,16 +68,21 @@
         android:id="@+id/maxima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/fecha"
+        app:layout_constraintStart_toEndOf="@+id/temp"
         app:layout_constraintTop_toTopOf="@+id/temp" />
 
     <TextView
         android:id="@+id/hora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fecha"
         app:layout_constraintTop_toTopOf="@+id/fecha" />
 
@@ -83,7 +90,10 @@
         android:id="@+id/minima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/hora"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/maxima"
         app:layout_constraintTop_toTopOf="@+id/maxima" />
 </androidx.constraintlayout.widget.ConstraintLayout>
