@@ -1,95 +1,135 @@
 package com.example.myweatherbase.activities;
 
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Spinner;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
-import com.example.myweatherbase.activities.model.List;
+import com.example.myweatherbase.activities.model.Ciudad;
+import com.example.myweatherbase.activities.model.Coord;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
-import com.example.myweatherbase.base.ImageDownloader;
 import com.example.myweatherbase.base.Parameters;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class MainActivity extends BaseActivity implements CallInterface , View.OnClickListener{
 
-    private TextView txtView ;
+public class MainActivity extends AppCompatActivity {
 
-    private TextView textViewDay;
+    private ImageView ciudad;
 
-    private TextView textViewDayOfWeek;
+    private Spinner spinnerCiudad;
 
-    private ImageView imageView;
+    private Button aceptar;
 
-    static Root root;
+    private HashMap<String, Coord> ciudades;
 
-    private RecyclerView recyclerVW;
+    private Double lon;
 
-    AdaptadorRecyclerVW adaptador;
+    private Double lat;
 
-    private TextView nombreCiudad;
+    private int img;
+
+    private ImageButton ajustes;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstaceState){
 
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstaceState);
 
         setContentView(R.layout.activity_main);
 
-        recyclerVW = findViewById(R.id.recyclerVW);
+        ciudad = findViewById(R.id.city);
 
-        adaptador = new AdaptadorRecyclerVW(this);
+        spinnerCiudad = findViewById(R.id.spinnerCity);
 
-        adaptador.setOnClickListener(this);
+        aceptar = findViewById(R.id.accept);
 
-        recyclerVW.setAdapter(adaptador);
+        ajustes = findViewById(R.id.ajustes);
 
-        recyclerVW.setLayoutManager(new LinearLayoutManager(this));
+        ArrayAdapter<Ciudad> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Ciudad.values());
 
-        // Mostramos la barra de progreso y ejecutamos la llamada a la API
-        showProgress();
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        executeCall(this);
+        spinnerCiudad.setAdapter(adapter);
+
+        ActivityResultLauncher resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Bundle extras = result.getData().getExtras();
+                        Parameters.LANG = extras.getString("LANG");
+
+
+
+                    }
+                }
+        );
+
+        spinnerCiudad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Ciudad ciudadElegida = (Ciudad) adapterView.getSelectedItem();
+
+                lat = ciudadElegida.getLat();
+
+                lon = ciudadElegida.getLon();
+
+                ciudad.setImageResource(ciudadElegida.getImg());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                lat = 39.5862518;
+
+                lon = -0.5411163;
+
+            }
+        });
+
+        aceptar.setOnClickListener( View ->{
+
+            Intent intent = new Intent(this, infHoras.class);
+
+            intent.putExtra("LON",lon);
+
+            intent.putExtra("LAT", lat);
+
+            startActivity(intent);
+
+        });
+
+        ajustes.setOnClickListener( View ->{
+
+            Intent intent = new Intent(this, Preferencias.class);
+
+            resultLauncher.launch(intent);
+
+        });
+
+
     }
 
-    // Realizamos la llamada y recogemos los datos en un objeto Root
-    @Override
-    public void doInBackground() {
-
-        root = Connector.getConector().get(Root.class,"&lat=39.5862518&lon=-0.5411163");
 
 
 
-    }
 
-    // Una vez ya se ha realizado la llamada, ocultamos la barra de progreso y presentamos los datos
-    @Override
-    public void doInUI() {
-
-        hideProgress();
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        List info = root.list.get(recyclerVW.getChildAdapterPosition(view));
-
-        Intent intent = new Intent(this, infoTiempo.class);
-
-        intent.putExtra("INFO",info);
-
-        startActivity(intent);
-
-    }
 }

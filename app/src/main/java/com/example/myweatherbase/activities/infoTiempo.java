@@ -1,7 +1,5 @@
 package com.example.myweatherbase.activities;
 
-import static com.example.myweatherbase.activities.MainActivity.root;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;

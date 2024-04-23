@@ -1,28 +1,22 @@
 package com.example.myweatherbase.activities;
 
-import static com.example.myweatherbase.activities.MainActivity.root;
+import static com.example.myweatherbase.activities.infHoras.root;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
 import com.example.myweatherbase.activities.model.List;
-import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.ImageDownloader;
 import com.example.myweatherbase.base.Parameters;
 
-import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
