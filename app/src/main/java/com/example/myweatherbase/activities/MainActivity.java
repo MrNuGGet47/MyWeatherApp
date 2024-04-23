@@ -68,6 +68,8 @@ public class MainActivity extends BaseActivity implements CallInterface , View.O
 
         root = Connector.getConector().get(Root.class,"&lat=39.5862518&lon=-0.5411163");
 
+
+
     }
 
     // Una vez ya se ha realizado la llamada, ocultamos la barra de progreso y presentamos los datos

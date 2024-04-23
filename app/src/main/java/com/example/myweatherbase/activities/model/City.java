@@ -11,4 +11,6 @@ public class City implements Serializable {
     public int timezone;
     public int sunrise;
     public int sunset;
+
+
 }
