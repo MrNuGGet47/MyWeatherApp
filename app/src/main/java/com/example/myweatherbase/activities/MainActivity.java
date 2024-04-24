@@ -68,19 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         spinnerCiudad.setAdapter(adapter);
 
-        ActivityResultLauncher resultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Bundle extras = result.getData().getExtras();
-                        Parameters.LANG = extras.getString("LANG");
-
-
-
-                    }
-                }
-        );
-
         spinnerCiudad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -121,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, Preferencias.class);
 
-            resultLauncher.launch(intent);
+            startActivity(intent);
 
         });
 

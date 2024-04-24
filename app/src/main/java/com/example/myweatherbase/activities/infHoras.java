@@ -54,6 +54,7 @@ public class infHoras extends BaseActivity implements CallInterface , View.OnCli
         showProgress();
 
         executeCall(this);
+
     }
 
     // Realizamos la llamada y recogemos los datos en un objeto Root

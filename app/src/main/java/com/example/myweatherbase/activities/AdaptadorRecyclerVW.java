@@ -73,11 +73,11 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
 
         holder.hora.setText(hour.format(date));
 
-        holder.temperatura.setText("Temp " + String.valueOf(periodo.main.temp) + "º");
+        holder.temperatura.setText("Temp " + String.valueOf(periodo.main.temp) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
-        holder.maxima.setText("Max " + String.valueOf(periodo.main.temp_max) + "º");
+        holder.maxima.setText("Max " + String.valueOf(periodo.main.temp_max) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
-        holder.minima.setText("Min " + String.valueOf(periodo.main.temp_min) + "º");
+        holder.minima.setText("Min " + String.valueOf(periodo.main.temp_min) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
     }
 
