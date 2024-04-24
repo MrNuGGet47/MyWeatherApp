@@ -34,6 +34,8 @@ public class Preferencias extends AppCompatActivity {
 
         super.onCreate(savedInstance);
 
+        setContentView(R.layout.preferencias);
+
         api = findViewById(R.id.api);
 
         units = findViewById(R.id.units);
@@ -54,21 +56,17 @@ public class Preferencias extends AppCompatActivity {
     }
     public void aceptar(View view){
 
-        Parameters.LANG = language.getSelectedItem().toString();
+        Parameters.setUNITS(units.getSelectedItem().toString());
 
-        Parameters.UNITS = units.getSelectedItem().toString();
-
-        Intent intent = new Intent();
-
-        setResult(RESULT_OK, intent);
+        Parameters.setLANG(language.getSelectedItem().toString());
 
         finish();
 
     }
     public void cancelar(View view){
-        Intent intent = new Intent();
-        setResult(RESULT_CANCELED, intent);
+
         finish();
+
     }
 
 
