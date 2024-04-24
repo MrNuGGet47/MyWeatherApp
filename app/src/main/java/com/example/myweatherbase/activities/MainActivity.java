@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -24,6 +25,7 @@ import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
 import com.example.myweatherbase.base.Parameters;
+import com.example.myweatherbase.base.ThemeSetup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton ajustes;
 
+    private Switch nightMode;
+
     @Override
     public void onCreate(Bundle savedInstaceState){
 
@@ -61,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         aceptar = findViewById(R.id.accept);
 
         ajustes = findViewById(R.id.ajustes);
+
+        nightMode = findViewById(R.id.night);
 
         ArrayAdapter<Ciudad> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Ciudad.values());
 
@@ -90,6 +96,18 @@ public class MainActivity extends AppCompatActivity {
                 lon = -0.5411163;
 
             }
+        });
+
+        nightMode.setOnCheckedChangeListener( (buttonView, isChecked) ->{
+
+            if(isChecked)
+
+                ThemeSetup.applyTheme(ThemeSetup.Mode.DARK);
+
+            else
+
+                ThemeSetup.applyTheme(ThemeSetup.Mode.DEFAULT);
+
         });
 
         aceptar.setOnClickListener( View ->{

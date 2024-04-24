@@ -26,10 +26,6 @@ public class Preferencias extends AppCompatActivity {
 
     private Spinner language;
 
-    private Spinner theme;
-
-
-
     @Override
     public void onCreate(Bundle savedInstance){
 
@@ -42,8 +38,6 @@ public class Preferencias extends AppCompatActivity {
         units = findViewById(R.id.units);
 
         language = findViewById(R.id.language);
-
-        theme = findViewById(R.id.theme);
 
         ArrayAdapter<String> unitsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, new String[]{"metric","imperial"});
 
@@ -62,7 +56,6 @@ public class Preferencias extends AppCompatActivity {
         Parameters.setLANG(language.getSelectedItem().toString());
 
         Parameters.setAPI(language.getSelectedItem().toString());
-        Resources.Theme.
 
         finish();
 
