@@ -3,6 +3,7 @@ package com.example.myweatherbase.activities;
 import static java.util.List.of;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -59,6 +60,9 @@ public class Preferencias extends AppCompatActivity {
         Parameters.setUNITS(units.getSelectedItem().toString());
 
         Parameters.setLANG(language.getSelectedItem().toString());
+
+        Parameters.setAPI(language.getSelectedItem().toString());
+        Resources.Theme.
 
         finish();
 

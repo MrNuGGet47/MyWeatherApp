@@ -27,5 +27,13 @@ public class Parameters {
 
     }
 
+    public static void setAPI(String api){
+
+        API = api;
+
+        URL_OPTIONS = "forecast?appid=" + API + "&lang=" + LANG + "&units=" + UNITS;
+
+    }
+
 
 }
