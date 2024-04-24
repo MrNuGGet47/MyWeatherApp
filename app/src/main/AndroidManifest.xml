@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- Only for precise location access -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,15 +27,15 @@
         </intent-filter>
             </activity>
 
-        <activity android:name=".activities.infoTiempo"
+        <activity android:name=".activities.InfTime"
             android:label="Informacion del Tiempo">
 
         </activity>
-        <activity android:name=".activities.infHoras"
+        <activity android:name=".activities.InfHours"
             android:label="Informacion por Horas">
 
         </activity>
-        <activity android:name=".activities.Preferencias"
+        <activity android:name=".activities.Preferences"
             android:label="Ajustes"></activity>
     </application>
 

@@ -2,8 +2,6 @@ package com.example.myweatherbase.activities;
 
 import static java.util.List.of;
 
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,10 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myweatherbase.R;
 import com.example.myweatherbase.base.Parameters;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class Preferencias extends AppCompatActivity {
+public class Preferences extends AppCompatActivity {
 
     private EditText api;
 
@@ -31,13 +26,15 @@ public class Preferencias extends AppCompatActivity {
 
         super.onCreate(savedInstance);
 
-        setContentView(R.layout.preferencias);
+        setContentView(R.layout.preferences);
 
         api = findViewById(R.id.api);
 
         units = findViewById(R.id.units);
 
         language = findViewById(R.id.language);
+
+        api.setText(Parameters.API);
 
         ArrayAdapter<String> unitsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, new String[]{"metric","imperial"});
 
@@ -49,7 +46,7 @@ public class Preferencias extends AppCompatActivity {
 
 
     }
-    public void aceptar(View view){
+    public void apply(View view){
 
         Parameters.setUNITS(units.getSelectedItem().toString());
 
@@ -60,7 +57,7 @@ public class Preferencias extends AppCompatActivity {
         finish();
 
     }
-    public void cancelar(View view){
+    public void cancel(View view){
 
         finish();
 

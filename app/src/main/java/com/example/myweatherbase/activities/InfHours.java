@@ -3,7 +3,6 @@ package com.example.myweatherbase.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,16 +15,16 @@ import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
 
-public class infHoras extends BaseActivity implements CallInterface , View.OnClickListener{
+public class InfHours extends BaseActivity implements CallInterface , View.OnClickListener{
 
 
     static Root root;
 
     private RecyclerView recyclerVW;
 
-    AdaptadorRecyclerVW adaptador;
+    RecyclerVWAdapter adapter;
 
-    private TextView nombreCiudad;
+    private TextView cityName;
 
     private Bundle extras;
 
@@ -40,13 +39,13 @@ public class infHoras extends BaseActivity implements CallInterface , View.OnCli
 
         recyclerVW = findViewById(R.id.recyclerVW);
 
-        nombreCiudad = findViewById(R.id.nombreCiudad);
+        cityName = findViewById(R.id.nombreCiudad);
 
-        adaptador = new AdaptadorRecyclerVW(this);
+        adapter = new RecyclerVWAdapter(this);
 
-        adaptador.setOnClickListener(this);
+        adapter.setOnClickListener(this);
 
-        recyclerVW.setAdapter(adaptador);
+        recyclerVW.setAdapter(adapter);
 
         recyclerVW.setLayoutManager(new LinearLayoutManager(this));
 
@@ -63,7 +62,7 @@ public class infHoras extends BaseActivity implements CallInterface , View.OnCli
 
         root = Connector.getConector().get(Root.class,"&lat="+ extras.getDouble("LAT") +"&lon="+ extras.getDouble("LON") + "");
 
-        nombreCiudad.setText(root.city.name);
+        cityName.setText(root.city.name);
 
     }
 
@@ -82,7 +81,7 @@ public class infHoras extends BaseActivity implements CallInterface , View.OnCli
 
         List info = root.list.get(recyclerVW.getChildAdapterPosition(view));
 
-        Intent intent = new Intent(this, infoTiempo.class);
+        Intent intent = new Intent(this, InfTime.class);
 
         intent.putExtra("INFO",info);
 

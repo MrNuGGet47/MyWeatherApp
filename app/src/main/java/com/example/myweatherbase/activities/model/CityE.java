@@ -2,7 +2,7 @@ package com.example.myweatherbase.activities.model;
 
 import com.example.myweatherbase.R;
 
-public enum Ciudad {
+public enum CityE {
     POBLADEVALLBONA("PoblaDeVallbona", 39.5883, -0.5554624, R.mipmap.ic_lapobla),
     PATERNA("Paterna", 39.5043274, -0.4505384, R.mipmap.ic_paterna);
 
@@ -14,7 +14,7 @@ public enum Ciudad {
 
     private int img;
 
-    Ciudad(String nombre, double lat, double lon, int img) {
+    CityE(String nombre, double lat, double lon, int img) {
 
         this.nombre = nombre;
 

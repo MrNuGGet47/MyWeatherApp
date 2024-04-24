@@ -14,15 +14,15 @@ import com.example.myweatherbase.base.Parameters;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class infoTiempo extends AppCompatActivity {
+public class InfTime extends AppCompatActivity {
 
     private ImageView imageView;
-    private TextView descripcion;
-    private TextView hora;
+    private TextView description;
+    private TextView hour;
 
-    private TextView nombreDia;
+    private TextView dayName;
 
-    private TextView fecha;
+    private TextView date;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -35,15 +35,15 @@ public class infoTiempo extends AppCompatActivity {
 
         imageView = findViewById(R.id.iconInf);
 
-        hora = findViewById(R.id.horaInf);
+        hour = findViewById(R.id.horaInf);
 
-        descripcion = findViewById(R.id.descripcionInf);
+        description = findViewById(R.id.descripcionInf);
 
-        nombreDia = findViewById(R.id.nombreDiaInf);
+        dayName = findViewById(R.id.nombreDiaInf);
 
-        fecha = findViewById(R.id.fechaInf);
+        date = findViewById(R.id.fechaInf);
 
-        descripcion.setText(info.weather.get(0).description);
+        description.setText(info.weather.get(0).description);
 
         Date date = new Date((long) info.dt * 1000);
 
@@ -55,11 +55,11 @@ public class infoTiempo extends AppCompatActivity {
 
         ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + info.weather.get(0).icon + Parameters.ICON_URL_POST, imageView);
 
-        fecha.setText(dateDay.format(date));
+        this.date.setText(dateDay.format(date));
 
-        hora.setText(hour.format(date));
+        this.hour.setText(hour.format(date));
 
-        nombreDia.setText(dayName.format(date));
+        this.dayName.setText(dayName.format(date));
 
     }
 

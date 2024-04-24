@@ -1,6 +1,6 @@
 package com.example.myweatherbase.activities;
 
-import static com.example.myweatherbase.activities.infHoras.root;
+import static com.example.myweatherbase.activities.InfHours.root;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,13 +20,13 @@ import com.example.myweatherbase.base.Parameters;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerVW.ViewHolder> {
+public class RecyclerVWAdapter extends RecyclerView.Adapter<RecyclerVWAdapter.ViewHolder> {
 
     private LayoutInflater layoutInflater;
 
     private View.OnClickListener onClickListener;
 
-    public  AdaptadorRecyclerVW(Context context){
+    public RecyclerVWAdapter(Context context){
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -34,7 +34,7 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
 
     @NonNull
     @Override
-    public AdaptadorRecyclerVW.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+    public RecyclerVWAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
 
         View view = layoutInflater.inflate(R.layout.list_simple_element ,parent, false);
 
@@ -51,9 +51,9 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdaptadorRecyclerVW.ViewHolder holder , int position){
+    public void onBindViewHolder(@NonNull RecyclerVWAdapter.ViewHolder holder , int position){
 
-        List periodo = root.list.get(position);
+        List period = root.list.get(position);
 
         Date date = new Date((long)root.list.get(position).dt*1000);
 
@@ -65,19 +65,19 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
 
         ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + root.list.get(position).weather.get(0).icon + Parameters.ICON_URL_POST, holder.icon);
 
-        holder.dia.setText(dateDayOfWeek.format(date));
+        holder.day.setText(dateDayOfWeek.format(date));
 
-        holder.precipitacion.setText(periodo.weather.get(0).description);
+        holder.precipitation.setText(period.weather.get(0).description);
 
-        holder.fecha.setText(dateDay.format(date));
+        holder.date.setText(dateDay.format(date));
 
-        holder.hora.setText(hour.format(date));
+        holder.hour.setText(hour.format(date));
 
-        holder.temperatura.setText("Temp " + String.valueOf(periodo.main.temp) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
+        holder.temperature.setText("Temp " + String.valueOf(period.main.temp) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
-        holder.maxima.setText("Max " + String.valueOf(periodo.main.temp_max) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
+        holder.max.setText("Max " + String.valueOf(period.main.temp_max) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
-        holder.minima.setText("Min " + String.valueOf(periodo.main.temp_min) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
+        holder.min.setText("Min " + String.valueOf(period.main.temp_min) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
     }
 
@@ -92,7 +92,7 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
 
         private ImageView icon;
 
-        private TextView dia, fecha, hora, precipitacion, temperatura, maxima , minima;
+        private TextView day, date, hour, precipitation, temperature, max, min;
 
         public ViewHolder(@NonNull View itemView){
 
@@ -100,19 +100,19 @@ public class AdaptadorRecyclerVW extends RecyclerView.Adapter<AdaptadorRecyclerV
 
             icon = itemView.findViewById(R.id.icon);
 
-            dia = itemView.findViewById(R.id.dia);
+            day = itemView.findViewById(R.id.day);
 
-            fecha = itemView.findViewById(R.id.fecha);
+            date = itemView.findViewById(R.id.date);
 
-            hora = itemView.findViewById(R.id.hora);
+            hour = itemView.findViewById(R.id.hour);
 
-            temperatura = itemView.findViewById(R.id.temp);
+            temperature = itemView.findViewById(R.id.temp);
 
-            maxima = itemView.findViewById(R.id.maxima);
+            max = itemView.findViewById(R.id.max);
 
-            minima = itemView.findViewById(R.id.minima);
+            min = itemView.findViewById(R.id.min);
 
-            precipitacion = itemView.findViewById(R.id.precipitacion);
+            precipitation = itemView.findViewById(R.id.precipitation);
 
         }
     }
