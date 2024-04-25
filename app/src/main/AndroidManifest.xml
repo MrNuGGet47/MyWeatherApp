@@ -19,7 +19,7 @@
         tools:targetApi="31"
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.MainActivity"
-            android:label="Seleccion Ciudad"
+            android:label="City Selection"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -28,15 +28,15 @@
             </activity>
 
         <activity android:name=".activities.InfTime"
-            android:label="Informacion del Tiempo">
+            android:label="Time Information">
 
         </activity>
         <activity android:name=".activities.InfHours"
-            android:label="Informacion por Horas">
+            android:label="Information by Hours">
 
         </activity>
         <activity android:name=".activities.Preferences"
-            android:label="Ajustes"></activity>
+            android:label="Settings"></activity>
     </application>
 
 </manifest>

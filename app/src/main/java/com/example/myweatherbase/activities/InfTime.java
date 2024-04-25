@@ -17,12 +17,16 @@ import java.util.Date;
 public class InfTime extends AppCompatActivity {
 
     private ImageView imageView;
+
     private TextView description;
+
     private TextView hour;
 
     private TextView dayName;
 
     private TextView date;
+
+    private TextView temp;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -37,7 +41,9 @@ public class InfTime extends AppCompatActivity {
 
         hour = findViewById(R.id.horaInf);
 
-        description = findViewById(R.id.descripcionInf);
+        description = findViewById(R.id.descriptionHour);
+
+        temp = findViewById(R.id.tempHour);
 
         dayName = findViewById(R.id.nombreDiaInf);
 
@@ -54,6 +60,8 @@ public class InfTime extends AppCompatActivity {
         SimpleDateFormat dayName = new SimpleDateFormat("EEEE");
 
         ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + info.weather.get(0).icon + Parameters.ICON_URL_POST, imageView);
+
+        temp.setText(String.valueOf(info.main.temp) + (Parameters.UNITS.equals("metric") ? "ºC" : "ºF"));
 
         this.date.setText(dateDay.format(date));
 

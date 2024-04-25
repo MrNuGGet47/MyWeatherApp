@@ -4,7 +4,8 @@ import com.example.myweatherbase.R;
 
 public enum CityE {
     POBLADEVALLBONA("PoblaDeVallbona", 39.5883, -0.5554624, R.mipmap.ic_lapobla),
-    PATERNA("Paterna", 39.5043274, -0.4505384, R.mipmap.ic_paterna);
+    PATERNA("Paterna", 39.5043274, -0.4505384, R.mipmap.ic_paterna),
+    PUÇOL("Puçol",39.6182216,-0.3075414, R.mipmap.ic_puzol);
 
     private String nombre;
 

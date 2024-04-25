@@ -41,13 +41,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
     private Spinner citySpinner;
 
-    private HashMap<String, Coord> cities;
-
     private Double lon;
 
     private Double lat;
-
-    private int img;
 
     private ImageButton settings;
 
@@ -60,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     private final int seconds = 10;
 
     private final float meters = 5;
-
-    private TextView myLocation;
 
     @Override
     public void onCreate(Bundle savedInstaceState){
@@ -81,8 +75,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         location = findViewById(R.id.location);
 
         managerLoc = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        myLocation = findViewById(R.id.myLocation);
 
         Criteria criteria = new Criteria();
 
@@ -149,11 +141,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
         location.setOnClickListener(View ->{
 
-            lat = locationAct.getLatitude();
+            Intent intent = new Intent(this, InfHours.class);
 
-            lon = locationAct.getLongitude();
+            intent.putExtra("LON",locationAct.getLongitude());
 
-            accept(View);
+            intent.putExtra("LAT",locationAct.getLatitude());
+
+            startActivity(intent);
 
         });
 
@@ -174,22 +168,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     @SuppressLint("MissingPermission")
     @Override
     protected void onResume() {
+
         super.onResume();
+
         managerLoc.requestLocationUpdates(provider,seconds*1000,meters,this);
+
     }
 
     @Override
     protected void onPause() {
+
         super.onPause();
+
         managerLoc.removeUpdates(this);
+
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
-        lat = location.getLatitude();
-
-        lon = location.getLatitude();
 
     }
 
@@ -205,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
         LocationListener.super.onProviderDisabled(provider);
 
+    }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // Your implementation here
     }
 
 

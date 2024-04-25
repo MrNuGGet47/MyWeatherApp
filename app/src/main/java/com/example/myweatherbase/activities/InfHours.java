@@ -3,8 +3,10 @@ package com.example.myweatherbase.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +50,10 @@ public class InfHours extends BaseActivity implements CallInterface , View.OnCli
         recyclerVW.setAdapter(adapter);
 
         recyclerVW.setLayoutManager(new LinearLayoutManager(this));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerVW.getContext(), DividerItemDecoration.VERTICAL);
+
+        recyclerVW.addItemDecoration(dividerItemDecoration);
 
         // Mostramos la barra de progreso y ejecutamos la llamada a la API
         showProgress();

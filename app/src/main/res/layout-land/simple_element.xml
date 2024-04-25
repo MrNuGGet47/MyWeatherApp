@@ -6,20 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activities.InfHours">
 
-    <TextView
-        android:id="@+id/fechaInf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toTopOf="@+id/nombreDiaInf"
-        app:layout_constraintStart_toStartOf="@+id/nombreDiaInf" />
-
     <ImageView
         android:id="@+id/iconInf"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/horaInf"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="@+id/nombreDiaInf"
         app:layout_constraintTop_toBottomOf="@+id/nombreDiaInf"
         app:srcCompat="@drawable/ic_launcher_background" />
@@ -28,45 +21,57 @@
         android:id="@+id/tempHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/iconInf"
         app:layout_constraintTop_toTopOf="@+id/iconInf" />
 
     <TextView
+        android:id="@+id/fechaInf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="20dp"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toTopOf="@+id/nombreDiaInf"
+        app:layout_constraintStart_toStartOf="@+id/nombreDiaInf" />
+
+    <TextView
+        android:id="@+id/descriptionHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/iconInf"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="@+id/iconInf"
+        app:layout_constraintTop_toBottomOf="@+id/iconInf" />
+
+    <TextView
         android:id="@+id/horaInf"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/nombreDiaInf"
         app:layout_constraintStart_toEndOf="@+id/nombreDiaInf"
-        app:layout_constraintTop_toTopOf="@+id/nombreDiaInf" />
+        app:layout_constraintTop_toTopOf="@+id/nombreDiaInf"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/nombreDiaInf"
         android:layout_width="133dp"
         android:layout_height="47dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="92dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/descriptionHour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/iconInf"
-        app:layout_constraintStart_toStartOf="@+id/iconInf"
-        app:layout_constraintTop_toBottomOf="@+id/iconInf" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

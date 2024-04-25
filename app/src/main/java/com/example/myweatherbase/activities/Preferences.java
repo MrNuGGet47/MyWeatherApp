@@ -52,7 +52,7 @@ public class Preferences extends AppCompatActivity {
 
         Parameters.setLANG(language.getSelectedItem().toString());
 
-        Parameters.setAPI(language.getSelectedItem().toString());
+        Parameters.setAPI(api.getText().toString());
 
         finish();
 
